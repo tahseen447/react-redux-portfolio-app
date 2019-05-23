@@ -6,7 +6,6 @@ class TeachersController < ApplicationController
   end
 
   def show
-    puts params.inspect
     @teacher = Teacher.find(params[:id])
     render json: @teacher.to_json
   end
