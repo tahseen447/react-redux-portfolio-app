@@ -1,7 +1,12 @@
 class StudentsController < ApplicationController
 
   def index
-    @students = Student.all
+    q = params[:q]
+    if q.blank?
+      @students = Student.all
+    else
+      @students = Student.where(["gender LIKE ?",`#{q}` ])
+    end
     render json: @students
   end
 
