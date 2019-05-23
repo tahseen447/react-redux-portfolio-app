@@ -9,10 +9,10 @@ const link={
 const NavBar = () => {
   return (
     <div className="navbar">
-    <NavLink to="/">Home</NavLink>
-    <NavLink to="/students" >Students</NavLink>
-    <NavLink to="/teachers">Teachers</NavLink>
-    <NavLink to="/about" >About</NavLink>
+    <NavLink to="/" activeStyle={link }>Home</NavLink>
+    <NavLink to="/students" activeStyle={link }>Students</NavLink>
+    <NavLink to="/teachers" activeStyle={link }>Teachers</NavLink>
+    <NavLink to="/about" activeStyle={link }>About</NavLink>
     </div>
   );
 };

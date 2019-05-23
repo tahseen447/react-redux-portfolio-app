@@ -7,7 +7,6 @@ import Teachers from '../components/Teachers'
 import Students from '../components/Students'
 import About from '../components/About'
 
-
 function App() {
   return (
     <Router>
