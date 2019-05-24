@@ -6,6 +6,7 @@ export default function teacherReducer(
   switch(action.type) {
     case 'LOADING_TEACHERS':
     case 'FETCH_TEACHERS':
+      return {...state, teachers: action.payload}
     default:
     return state;
   }

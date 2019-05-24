@@ -1,9 +1,9 @@
 import React from 'react';
 
-const Teachers = () => {
+const Teachers = ({ teachers }) => {
   return (
     <div>
-      {<h1>Teacher's Page</h1>}
+      <h1>Teacher's Page</h1>
     </div>
   );
 };

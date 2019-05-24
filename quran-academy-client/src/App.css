@@ -1,3 +1,17 @@
 .App {
   text-align: center;
 }
+.sidebar{
+  float: left;
+  width: 30vw;
+  height: 90vh;
+  background: orange;
+  color: white;
+}
+
+.main-content{
+  width: 70vw;
+  height: 90vh;
+  background: grey;
+  color: black;
+}
