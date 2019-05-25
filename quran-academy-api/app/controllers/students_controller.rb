@@ -1,3 +1,4 @@
+require 'pry'
 class StudentsController < ApplicationController
 
   def index
@@ -17,16 +18,20 @@ class StudentsController < ApplicationController
   end
 
   def update
+    raise params
+    binding.pry
     @student = Student.find(params[:id])
     @student.update(student_params)
     render json: @student
    end
 
    def edit
+     @student = Student.find(params[:id])
    end
 
   private
   def student_params
+    binding.pry
     params.require(:student).permit(:id, :name, :lesson, :lesson_date)
   end
 
