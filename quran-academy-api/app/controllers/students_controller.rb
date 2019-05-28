@@ -18,20 +18,16 @@ class StudentsController < ApplicationController
   end
 
   def update
-    raise params
-    binding.pry
+    puts params.inspect
     @student = Student.find(params[:id])
     @student.update(student_params)
+    binding.pry
     render json: @student
    end
 
-   def edit
-     @student = Student.find(params[:id])
-   end
 
   private
   def student_params
-    binding.pry
     params.require(:student).permit(:id, :name, :lesson, :lesson_date)
   end
 
