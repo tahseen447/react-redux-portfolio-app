@@ -21,7 +21,6 @@ class StudentsController < ApplicationController
     puts params.inspect
     @student = Student.find(params[:id])
     @student.update(student_params)
-    binding.pry
     render json: @student
    end
 

@@ -18,7 +18,6 @@ ActiveRecord::Schema.define(version: 2019_05_22_231132) do
     t.integer "age"
     t.string "image"
     t.string "lesson"
-    t.date "lesson_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "teacher_id"

@@ -39,16 +39,18 @@ componentDidMount(){
   }
   render(){
     return (
+      <Router>
       <div className="App">
       <h1>Welcome to Quran Academy</h1>
-      <div className="sidebar">
-      <Students  students={this.state.students} updateStudent={this.updateStudent}/>
-      <Teachers teachers={this.state.teachers} />
+      <NavBar />
+      <div >
+      <Route exact path="/" component={Home} />
+      <Route exact path="/about" component={About} />
+      <Route exact path="/students" render={() => (<Students  students={this.state.students} updateStudent={this.updateStudent}/>)} />
+      <Route exact path="/teachers" render={()=>(<Teachers teachers={this.state.teachers}/>)} />
       </div>
-      <div className="main-content">
-          <p>{this.state.student.name}</p>
       </div>
-      </div>
+      </Router>
     )
   }
 };

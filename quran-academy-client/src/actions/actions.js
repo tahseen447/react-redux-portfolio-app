@@ -18,14 +18,12 @@ export const fetchStudents= ()=>{
     return fetch('/api/teachers').then(response=>response.json());
   }
 
-
 export const updateStudent =(data) => {
-  let body = JSON.stringify({...data.student, lesson: data.data, lesson_date: new Date()})
+  let student = {...data.student, lesson: data.data}
+  let body = JSON.stringify({student: student})
   debugger;
   return fetch('/api/students/' + data.student.id, {
         method: 'PUT',
-        contentType:'application/json',
-        accepts: 'application/json',
         body: JSON.stringify(body),
         headers: {
             'Content-Type': 'application/json'
