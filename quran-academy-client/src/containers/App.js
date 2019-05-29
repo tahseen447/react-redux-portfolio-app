@@ -9,36 +9,24 @@ import Students from '../components/students/Students'
 import About from '../components/About'
 
 import {connect} from 'react-redux'
+
 import {fetchStudents, fetchTeachers, updateStudent, addTeacher } from '../actions/actions'
 
 class App extends Component{
 
-  constructor(){
-    super()
-    this.state={
-      students:[],
-      teachers:[]
-    }
-  }
-
 componentDidMount(){
-    fetchStudents().then(students => this.setState({
-      students: students
-    }))
-    fetchTeachers().then(teachers =>
-      this.setState({
-      teachers: teachers
-    })
-  )
+    this.props.fetchStudents();
+
+    this.props.fetchTeachers();
   }
 
   updateStudent = (student) =>{
     updateStudent(student).then(result => {
       //somehow update the student here
       let students = this.state.students;
-      let index = students.findIndex((obj => obj.id == result.id));
+      let index = students.findIndex((obj => obj.id === result.id));
       students[index].lesson = result.lesson
-      
+
       this.setState({
         students: students
       })
@@ -59,8 +47,8 @@ componentDidMount(){
       <div >
       <Route exact path="/" component={Home} />
       <Route exact path="/about" component={About} />
-      <Route exact path="/students" render={() => (<Students  students={this.state.students} updateStudent={this.updateStudent}/>)} />
-      <Route exact path="/teachers" render={()=>(<Teachers teachers={this.state.teachers} addTeacher={this.addTeacher}/>)} />
+      <Route exact path="/students" render={() => (<Students  students={this.props.students.students} updateStudent={this.updateStudent}/>)} />
+      <Route exact path="/teachers" render={()=>(<Teachers teachers={this.props.teachers.teachers} addTeacher={this.addTeacher}/>)} />
       </div>
       </div>
       </Router>
@@ -70,7 +58,7 @@ componentDidMount(){
 
 const mapStateToProps = state => {
   return {
-    students: state.students,
+      students: state.students,
     teachers: state.teachers
   }
 }
@@ -78,7 +66,8 @@ const mapDispatchToProps = (dispatch) => {
   return{
     fetchStudents: () => dispatch(fetchStudents()),
     fetchTeachers: () => dispatch(fetchTeachers()),
-    updateStudent: () => dispatch(updateStudent())
+    updateStudent: (student) => dispatch(updateStudent(student)),
+    addTeacher: (teacher) =>dispatch(addTeacher(teacher))
   }
 }
 
