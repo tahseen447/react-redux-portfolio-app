@@ -36,8 +36,8 @@ componentDidMount(){
     updateStudent(student).then(result => console.log("updated lesson", result))
   }
 
-  addTeacher = (teacher) => {
-    addTeacher(teacher).then(res=>console.log("created teacher", res))
+  addTeacher = teacher => {
+    addTeacher(teacher).then(teacher=> console.log("created teacher", teacher))
   }
 
 

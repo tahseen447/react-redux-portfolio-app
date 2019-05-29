@@ -26,14 +26,12 @@ export const updateStudent =(data) => {
         headers: {
             'Content-Type': 'application/json'
         }
-    }).then(res => {
-       return res;
-   })
+    }).then(res => res.json());
  }
 
 
 
-export const addTeacher= (teacher) =>{
+export const addTeacher = teacher =>{
   const request = {
     method: 'POST',
     body: JSON.stringify(teacher),
@@ -41,8 +39,5 @@ export const addTeacher= (teacher) =>{
       'Content-Type': 'application/json',
   }
 };
-  return fetch('/api/teachers', request).then(response => {
-    debugger;
-    response.json();
-  });
+  return fetch('/api/teachers', request).then(response => response.json() );
 }

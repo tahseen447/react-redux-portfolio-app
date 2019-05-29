@@ -13,7 +13,7 @@ class TeachersController < ApplicationController
   def create
     @teacher = Teacher.new(teacher_params)
     if @teacher.save
-      render json: @teacher
+      render json: @teacher.to_json
     else
       render json: { errors: {message: "Failed to add new Teacher "}}
     end
