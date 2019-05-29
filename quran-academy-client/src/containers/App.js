@@ -5,12 +5,11 @@ import NavBar from '../components/NavBar'
 import Home from '../components/Home'
 import Teachers from '../components/teachers/Teachers'
 import Students from '../components/students/Students'
-import Student from '../components/students/Students'
 
 import About from '../components/About'
 
 import {connect} from 'react-redux'
-import {fetchStudents, fetchTeachers, updateStudent } from '../actions/actions'
+import {fetchStudents, fetchTeachers, updateStudent, addTeacher } from '../actions/actions'
 
 class App extends Component{
 
@@ -18,8 +17,7 @@ class App extends Component{
     super()
     this.state={
       students:[],
-      teachers:[],
-      student: []
+      teachers:[]
     }
   }
 
@@ -27,16 +25,22 @@ componentDidMount(){
     fetchStudents().then(students => this.setState({
       students: students
     }))
-    fetchTeachers().then(teachers => this.setState({
+    fetchTeachers().then(teachers =>
+      this.setState({
       teachers: teachers
-    }))
+    })
+  )
   }
 
   updateStudent = (student) =>{
-    updateStudent(student).then(res=>this.setState({
-      student: res
-    }))
+    updateStudent(student).then(result => console.log("updated lesson", result))
   }
+
+  addTeacher = (teacher) => {
+    addTeacher(teacher).then(res=>console.log("created teacher", res))
+  }
+
+
   render(){
     return (
       <Router>
@@ -47,7 +51,7 @@ componentDidMount(){
       <Route exact path="/" component={Home} />
       <Route exact path="/about" component={About} />
       <Route exact path="/students" render={() => (<Students  students={this.state.students} updateStudent={this.updateStudent}/>)} />
-      <Route exact path="/teachers" render={()=>(<Teachers teachers={this.state.teachers}/>)} />
+      <Route exact path="/teachers" render={()=>(<Teachers teachers={this.state.teachers} addTeacher={this.addTeacher}/>)} />
       </div>
       </div>
       </Router>

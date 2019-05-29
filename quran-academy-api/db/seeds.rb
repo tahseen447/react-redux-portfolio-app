@@ -5,9 +5,9 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-Teacher.create(name: "Sheikh Anas", gender:"M", image:"", bio:"He is the Imam and Principal of Quran Academy")
-Teacher.create(name: "Ms. Buhsra", gender:"F", image:"", bio:"She is the first lady of the Masjid and also a French Teacher")
-Teacher.create(name: "Sheikh Ahmed", gender:"M", image:"", bio:"He is the Vice Imam and Vice Principal of Quran Academy")
+Teacher.create(name: "Sheikh Anas", age: 31, gender:"M", image:"", bio:"He is the Imam and Principal of Quran Academy")
+Teacher.create(name: "Ms. Bushra", gender:"F",age:30,  image:"", bio:"She is the first lady of the Masjid and also a French Teacher")
+Teacher.create(name: "Sheikh Ahmed", gender:"M", age:30, image:"", bio:"He is the Vice Imam and Vice Principal of Quran Academy")
 
 Student.create(name:"Maryam Siddiqui", age:4, image:"", gender:"F", lesson:"damma", teacher_id:1)
 Student.create(name:"Ali Siddiqui", age:2, image:"", gender:"M", lesson:"letter ba", teacher_id:2)

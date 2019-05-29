@@ -16,20 +16,33 @@ export const fetchStudents= ()=>{
     //   .then(teachers => dispatch({ type: 'FETCH_TEACHERS', payload: teachers }));
     // };
     return fetch('/api/teachers').then(response=>response.json());
-  }
+  };
 
 export const updateStudent =(data) => {
-  let student = {...data.student, lesson: data.data}
-  let body = JSON.stringify({student: student})
-  debugger;
+  let body = JSON.stringify({lesson: data.lesson})
   return fetch('/api/students/' + data.student.id, {
         method: 'PUT',
-        body: JSON.stringify(body),
+        body: body,
         headers: {
             'Content-Type': 'application/json'
         }
     }).then(res => {
        return res;
    })
+ }
 
+
+
+export const addTeacher= (teacher) =>{
+  const request = {
+    method: 'POST',
+    body: JSON.stringify(teacher),
+    headers:{
+      'Content-Type': 'application/json',
+  }
+};
+  return fetch('/api/teachers', request).then(response => {
+    debugger;
+    response.json();
+  });
 }

@@ -19,7 +19,7 @@ class StudentInput extends Component {
 
   handleOnSubmit(event) {
     event.preventDefault();
-    this.props.updateStudent({ student: this.props.student, data: this.state.lesson} )
+    this.props.updateStudent({ student: this.props.student, lesson: this.state.lesson} )
     this.setState({
       student: {
         lesson: ''
