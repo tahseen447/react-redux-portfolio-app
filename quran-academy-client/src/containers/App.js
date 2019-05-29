@@ -4,7 +4,7 @@ import {BrowserRouter as Router, Route} from 'react-router-dom';
 import NavBar from '../components/NavBar'
 import Home from '../components/Home'
 import Teachers from '../components/teachers/Teachers'
-import Students from '../components/students/Students'
+import StudentsPage from './StudentsPage'
 
 import About from '../components/About'
 
@@ -14,10 +14,20 @@ import {fetchStudents, fetchTeachers, updateStudent, addTeacher } from '../actio
 
 class App extends Component{
 
-componentDidMount(){
-    this.props.fetchStudents();
+  constructor(){
+    super()
+    this.state={
+      students: [],
+      teachers: []
+    }
+  }
 
-    this.props.fetchTeachers();
+componentDidMount(){
+    this.props.fetchStudents().then(result=> {
+      debugger;
+      this.setState({students: result})
+    });
+    this.props.fetchTeachers().then(result => this.setState({teachers: result}));
   }
 
   updateStudent = (student) =>{
@@ -25,17 +35,17 @@ componentDidMount(){
       //somehow update the student here
       let students = this.state.students;
       let index = students.findIndex((obj => obj.id === result.id));
-      students[index].lesson = result.lesson
+      students[index].lesson = result.lesson;
 
       this.setState({
         students: students
       })
-    })
-  }
+  })
+}
 
   addTeacher = teacher => {
-    addTeacher(teacher).then(teacher=> this.setState({teachers: this.state.teachers.concat(teacher)}))
-  }
+    addTeacher(teacher).then(teacher=>  this.setState({teachers: this.state.teachers.concat(teacher) }));
+}
 
 
   render(){
@@ -47,8 +57,8 @@ componentDidMount(){
       <div >
       <Route exact path="/" component={Home} />
       <Route exact path="/about" component={About} />
-      <Route exact path="/students" render={() => (<Students  students={this.props.students.students} updateStudent={this.updateStudent}/>)} />
-      <Route exact path="/teachers" render={()=>(<Teachers teachers={this.props.teachers.teachers} addTeacher={this.addTeacher}/>)} />
+      <Route path='/students' render={ routerProps => <StudentsPage {...routerProps}  students={this.state.students}  updateStudent={this.updateStudent}/>} />
+      <Route exact path="/teachers" render={()=>(<Teachers teachers={this.state.teachers} addTeacher={this.addTeacher}/>)} />
       </div>
       </div>
       </Router>
