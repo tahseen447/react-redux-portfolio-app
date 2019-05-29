@@ -33,11 +33,20 @@ componentDidMount(){
   }
 
   updateStudent = (student) =>{
-    updateStudent(student).then(result => console.log("updated lesson", result))
+    updateStudent(student).then(result => {
+      //somehow update the student here
+      let students = this.state.students;
+      let index = students.findIndex((obj => obj.id == result.id));
+      students[index].lesson = result.lesson
+      
+      this.setState({
+        students: students
+      })
+    })
   }
 
   addTeacher = teacher => {
-    addTeacher(teacher).then(teacher=> console.log("created teacher", teacher))
+    addTeacher(teacher).then(teacher=> this.setState({teachers: this.state.teachers.concat(teacher)}))
   }
 
 
