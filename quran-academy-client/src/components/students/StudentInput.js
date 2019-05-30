@@ -1,5 +1,9 @@
 import React, { Component} from 'react';
 
+import { connect } from 'react-redux';
+
+import {updateStudent} from '../../actions/actions'
+
 class StudentInput extends Component {
 
   constructor(props) {
@@ -21,13 +25,8 @@ class StudentInput extends Component {
     event.preventDefault();
     this.props.updateStudent({ student: this.props.student, lesson: this.state.lesson} );
     this.setState({
-      student: {
         lesson: ''
-      }
-    }, () => {
-      debugger
-      console.log("clearing lesson")
-    });
+      });
   }
 
   render() {
@@ -47,4 +46,4 @@ class StudentInput extends Component {
   }
 };
 
-export default StudentInput
+export default connect(null, {updateStudent} )(StudentInput);

@@ -14,37 +14,20 @@ import {fetchStudents, fetchTeachers, updateStudent, addTeacher } from '../actio
 
 class App extends Component{
 
-  constructor(){
-    super()
-    this.state={
-      students: [],
-      teachers: []
-    }
-  }
 
 componentDidMount(){
-    this.props.fetchStudents().then(result=> {
-      debugger;
-      this.setState({students: result})
-    });
-    this.props.fetchTeachers().then(result => this.setState({teachers: result}));
+    this.props.fetchStudents()
+    //.then(result=> { this.setState({students: result.payload})});
+    this.props.fetchTeachers()
+    //.then(result => this.setState({teachers: result.payload}));
   }
 
   updateStudent = (student) =>{
-    updateStudent(student).then(result => {
-      //somehow update the student here
-      let students = this.state.students;
-      let index = students.findIndex((obj => obj.id === result.id));
-      students[index].lesson = result.lesson;
-
-      this.setState({
-        students: students
-      })
-  })
+    this.props.updateStudent(student)
 }
 
   addTeacher = teacher => {
-    addTeacher(teacher).then(teacher=>  this.setState({teachers: this.state.teachers.concat(teacher) }));
+    this.props.addTeacher(teacher).then(teacher=> this.props.teachers.concat(teacher));// this.setState({teachers: this.state.teachers.concat(teacher) }));
 }
 
 
@@ -57,8 +40,8 @@ componentDidMount(){
       <div >
       <Route exact path="/" component={Home} />
       <Route exact path="/about" component={About} />
-      <Route path='/students' render={ routerProps => <StudentsPage {...routerProps}  students={this.state.students}  updateStudent={this.updateStudent}/>} />
-      <Route exact path="/teachers" render={()=>(<Teachers teachers={this.state.teachers} addTeacher={this.addTeacher}/>)} />
+      <Route path='/students' render={ routerProps => <StudentsPage {...routerProps}  students={this.props.students} />} />
+      <Route exact path="/teachers" render={()=>(<Teachers teachers={this.props.teachers} addTeacher={this.addTeacher}/>)} />
       </div>
       </div>
       </Router>

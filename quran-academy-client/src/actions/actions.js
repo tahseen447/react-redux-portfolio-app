@@ -19,6 +19,7 @@ export const fetchStudents= ()=>{
   };
 
 export const updateStudent =(data) => {
+  return (dispatch) => {
   let body = JSON.stringify({lesson: data.lesson})
   return fetch('/api/students/' + data.student.id, {
         method: 'PUT',
@@ -26,8 +27,10 @@ export const updateStudent =(data) => {
         headers: {
             'Content-Type': 'application/json'
         }
-    }).then(res => res.json());
- }
+    }).then(res => res.json())
+      .then(student => dispatch({type: 'UPDATE_STUDENT_SUCCESS', payload: student}));
+  };
+}
 
 
 

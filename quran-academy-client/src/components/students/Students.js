@@ -1,5 +1,4 @@
 import React from 'react'
-import Student from './Student'
 import { Link } from 'react-router-dom'
 
 const Students= ({students, updateStudent}) => {
