@@ -1,5 +1,9 @@
 import React, { Component} from 'react';
 
+import { connect } from 'react-redux';
+
+import {addTeacher} from '../../actions/actions'
+
 class TeacherInput extends Component {
 
   constructor(props) {
@@ -76,4 +80,4 @@ class TeacherInput extends Component {
   }
 };
 
-export default TeacherInput;
+export default connect(null, {addTeacher})(TeacherInput);

@@ -40,7 +40,10 @@ export const addTeacher = teacher =>{
     body: JSON.stringify(teacher),
     headers:{
       'Content-Type': 'application/json',
-  }
-};
-  return fetch('/api/teachers', request).then(response => response.json() );
+    }
+  };
+return (dispatch) => {
+  return fetch('/api/teachers', request).then(response => response.json())
+  .then(teacher =>dispatch({type: 'UPDATE_TEACHER_SUCCESS', payload: teacher }))
+  };
 }

@@ -1,14 +1,13 @@
 export default function teacherReducer(
   state = [] , action
 ) {
-  console.log(action.paylod)
   switch(action.type) {
     case 'FETCH_TEACHERS':
-      console.log(state.teachers)
       return action.payload
-      case 'LOADING_TEACHERS':
-      console.log("loading teachers");
+    case 'LOADING_TEACHERS':
       return state;
+    case 'UPDATE_STUDENT_SUCCESS':
+      return state.concat(action.payload);
     default:
     return state;
   }
