@@ -6,8 +6,8 @@ export default function teacherReducer(
       return action.payload
     case 'LOADING_TEACHERS':
       return state;
-    case 'UPDATE_STUDENT_SUCCESS':
-      return state.concat(action.payload);
+    case 'UPDATE_TEACHER_SUCCESS':
+      return [...state, action.payload];
     default:
     return state;
   }

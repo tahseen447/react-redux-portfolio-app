@@ -11,6 +11,7 @@ class TeachersController < ApplicationController
   end
 
   def create
+    puts params
     @teacher = Teacher.new(teacher_params)
     if @teacher.save
       render json: @teacher.to_json

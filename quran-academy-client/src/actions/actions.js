@@ -35,16 +35,15 @@ export const updateStudent =(data) => {
 
 
 export const addTeacher = teacher =>{
-  const request = {
+  debugger;
+return (dispatch) => {
+  return fetch('/api/teachers', {
     method: 'POST',
     body: JSON.stringify(teacher),
     headers:{
       'Content-Type': 'application/json',
     }
-  };
-debugger;
-return (dispatch) => {
-  return fetch('/api/teachers', request).then(response => response.json())
-  .then(teacher =>dispatch({type: 'UPDATE_TEACHER_SUCCESS', payload: teacher }))
+  }).then(response => response.json())
+  .then(teacher => dispatch({type: 'UPDATE_TEACHER_SUCCESS', payload: teacher }));
   };
 }

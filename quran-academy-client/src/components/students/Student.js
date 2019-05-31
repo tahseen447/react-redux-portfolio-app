@@ -9,6 +9,9 @@ const Student = ({match, students}) => {
     <p>Name: {student.name}</p>
     <p>Age: {student.age}</p>
     <p>Gender: {student.gender} </p>
+    <p>Image:
+    <img src="" alt=""/>
+    </p>
     <p>Current Lesson: {student.lesson} </p>
     <StudentInput student={student} />
   </div>
