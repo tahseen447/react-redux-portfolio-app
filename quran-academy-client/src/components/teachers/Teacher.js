@@ -1,6 +1,8 @@
 import React from 'react'
 
-const Teacher = ({teacher}) => {
+const Teacher = ({match, teachers}) => {
+  const id = match.params.teacherId -1;
+  const teacher = teachers[id]
   return (
     <div key={teacher.id}>
     <p>Name: {teacher.name}</p>

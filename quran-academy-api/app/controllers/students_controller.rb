@@ -12,13 +12,11 @@ class StudentsController < ApplicationController
   end
 
   def show
-    puts params.inspect
     @student = Student.find(params[:id])
     render json: @student.to_json
   end
 
   def update
-    puts params.inspect
     @student = Student.find(params[:id])
     @student.update(student_params)
     render json: @student

@@ -1,7 +1,7 @@
 import React from 'react'
 import StudentInput from './StudentInput'
 
-const Student = ({match, students, updateStudent}) => {
+const Student = ({match, students}) => {
   const id = match.params.studentId -1;
   const student = students[id]
   return (
@@ -10,7 +10,7 @@ const Student = ({match, students, updateStudent}) => {
     <p>Age: {student.age}</p>
     <p>Gender: {student.gender} </p>
     <p>Current Lesson: {student.lesson} </p>
-    <StudentInput student={student} updateStudent={updateStudent}/>
+    <StudentInput student={student} />
   </div>
 )
 }

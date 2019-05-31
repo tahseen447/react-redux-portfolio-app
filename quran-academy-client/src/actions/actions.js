@@ -42,6 +42,7 @@ export const addTeacher = teacher =>{
       'Content-Type': 'application/json',
     }
   };
+debugger;
 return (dispatch) => {
   return fetch('/api/teachers', request).then(response => response.json())
   .then(teacher =>dispatch({type: 'UPDATE_TEACHER_SUCCESS', payload: teacher }))
